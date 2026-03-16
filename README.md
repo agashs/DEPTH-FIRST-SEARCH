@@ -1,7 +1,7 @@
 # BREADTH-FIRST-SEARCH
 <h1>ExpNo 3 : Implement Breadth First Search Traversal of a Graph</h1> 
-<h3>Name:  </h3>
-<h3>Register Number: </h3>
+<h3>Name:  AGASH S</h3>
+<h3>Register Number: 212224040014</h3>
 <H3>Aim:</H3>
 <p>To Implement Breadth First Search Traversal of a Graph using Python 3.</p>
 <h3>Theory:</h3>
@@ -65,7 +65,56 @@ Now, Queue becomes empty, So, terminate these process of iteration.
 <li>Find its Successors Or neighbors and Check whether the node is visited or not.</li>
 <li>If Not Visited, add it to the Queue. Else Continue.</li>
 <li>Iterate steps 4 and 5 until all nodes get visited, and there are no more unvisited nodes.</li>
+## PROGRAM
 
+```
+from collections import deque
+from collections import defaultdict
+
+
+'''
+V E
+FOR EVERY EDGE
+U V
+7 9
+A B
+A C 
+A F
+C E
+C F
+C D
+D E 
+D G
+G F
+'''
+def bfs(graph,start,visited,path):
+    queue = deque()
+    path.append(start)
+    queue.append(start)
+    visited[start] = True
+    while len(queue) != 0:
+        tmpnode = queue.popleft()
+        for neighbour in graph[tmpnode]:
+            if visited[neighbour] == False:
+                path.append(neighbour)
+                queue.append(neighbour)
+                visited[neighbour] = True
+    return path
+
+graph = defaultdict(list)
+v,e = map(int,input().split())
+for i in range(e):
+    u,v = map(str,input().split())
+    graph[u].append(v)
+    graph[v].append(u)
+
+start = 'A'
+path = []
+visited = defaultdict(bool)
+traversedpath = bfs(graph,start,visited,path)
+print(traversedpath)
+
+```
 </ol>
 
 <hr>
@@ -83,6 +132,7 @@ D G <BR>
 G F <BR>
 <hr>
 <h3>Sample Output</h3>
+<img width="885" height="535" alt="-" src="https://github.com/user-attachments/assets/8f27a922-8d1b-44ea-b326-474e713b88b5" />
 <hr>
 ['A', 'B', 'C', 'F', 'E', 'D', 'G']
 
@@ -100,6 +150,9 @@ G F <BR>
 3 4 <BR>
 <hr>
 <h3>Sample Output</h3>
+<img width="710" height="402" alt="Screenshot 2025-08-26 093648" src="https://github.com/user-attachments/assets/60238abe-667b-4b0b-b919-94359cb6c0b6" />
+
+
 <hr>
 ['0', '1', '2', '3', '4']
 <hr>
